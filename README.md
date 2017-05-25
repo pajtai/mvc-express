@@ -1,5 +1,7 @@
 # mvc-express
 
+[![Build Status](https://travis-ci.org/pajtai/mvc-express.png?branch=master)](https://travis-ci.org/pajtai/mvc-express)
+
 MVC Express is a minimal MVC framework. It gives you:
 
 1. Auto loading of Models you create
