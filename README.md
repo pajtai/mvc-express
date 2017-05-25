@@ -3,7 +3,7 @@
 MVC Express is a minimal MVC framework. It gives you:
 
 1. Auto loading of Models you create
-1. Optioneal Sequelize model loader 
+1. Optional Sequelize model loader 
 1. Auto loading of Resource Controllers - Controllers with CRUD on Controller name based routes
 1. Auto loading of Basic Controllers - Controllers that can be attached to routes
 1. Routes.js file to hook Basic Controllers to routes
