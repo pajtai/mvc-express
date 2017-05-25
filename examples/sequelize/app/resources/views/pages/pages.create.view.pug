@@ -1,0 +1,24 @@
+html
+    head
+        title Create a Page
+        link(   rel="stylesheet"
+                type="text/css"
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+                integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+                crossorigin="anonymous")
+    body
+        .container
+            .jumbotron
+                h1 Create a Page
+            form(action="/pages" method="post")
+                .form-group
+                    label(for="title") Title
+                    input#title.form-control(type="text" name="title" placeholder="Enter title")
+                .form-group
+                    label(for="slug") Slug
+                    input#slug.form-control(type="text" name="slug" placeholder="Enter slug")
+                    small.form-text.text-muted The part after /pages/
+                .form-group
+                    label(for="content") Content
+                    textarea#content.form-control(name="content" rows="5")
+                button.btn.btn-primary(type="submit") Create

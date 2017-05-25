@@ -1,0 +1,29 @@
+{
+  "name": "what-is-mvc",
+  "version": "1.0.0",
+  "description": "-",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -V app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pajtai/what-is-mvc/issues"
+  },
+  "homepage": "https://github.com/pajtai/what-is-mvc#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "glob": "^7.1.1",
+    "lodash": "^4.17.4",
+    "mysql": "^2.13.0",
+    "mysql2": "^1.2.0",
+    "pug": "^2.0.0-rc.1",
+    "sequelize": "^3.30.4",
+    "sequelize-cli": "^2.7.0"
+  }
+}

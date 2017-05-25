@@ -3,9 +3,10 @@
 MVC Express is a minimal MVC framework. It gives you:
 
 1. Auto loading of Models you create
+1. Optioneal Sequelize model loader 
 1. Auto loading of Resource Controllers - Controllers with CRUD on Controller name based routes
 1. Auto loading of Basic Controllers - Controllers that can be attached to routes
-1. Routes.js file
+1. Routes.js file to hook Basic Controllers to routes
 1. Unhindered ability to use express views, middlewares, and other functionality
 
 ## Usage
@@ -57,13 +58,20 @@ To start the app:
 // app/index.js
 
 const mvc = require('mvc-express');
+const config = require('../config/config.json');
+const modelLoader = require('mvc-express/models/sequelize')(config);
+
 
 mvc.boot({
-    root: __dirname
+    root : __dirname,
+    modelLoader
 });
+
 ```
 
 If `root` is not provided, the default is `process.cwd()`.
+
+If `modelLoader` is not provided, then it is required in from `root/boot/models`.
 
 ### Boot
 
@@ -75,4 +83,35 @@ from it, then MVC Express waits until the promise is resolved. If you need to co
 do it.
 3. The models are loaded from root/model using root/boot/models. Models should be name NAME.model.js. The model loader is
 called with the array of model paths found. This npm comes with a Sequelize loader at `require('mvc-express/models/sequelize')`.
+4. The controllers are loaded from root/http/controllers/basic and root/http/controllers/resource. Resource controllers
+get a route based on their name, and the get CRUD automatically generated based on their actions. Basic controllers have
+to be hooked up to routes manually. Each controllers is called with models and services as arguments.
+5. root/http/route.js is loaded in. This is called with controllers, app, services
 
+## Controllers
+
+If you set `controller.default` to true, then `controller.index` will be used for the `/` - the home page.
+
+### Resource Controllers
+
+These are automatically routed based on their names. Routes are created for available actions:
+
+```
++--------+-------------------------------------------------------+-----------------------+
+| Verb   | Route                                                 | Method                |
++--------+-------------------------------------------------------+-----------------------+
+| get    | `/${controller.name}/`                                | controller.index      |
+| get    | `/${controller.name}/create`                          | controller.create     |
+| post   | `/${controller.name}`                                 | controller.store      |
+| get    | `/${controller.name}/:${controller.singularName}`     | controller.show       |
+| get    | `/${controller.name}/:${controller.singularName}/edit`| controller.edit       |
+| put    | `/${controller.name}/:${controller.singularName}`     | controller.update     |
+| delete | `/${controller.name}/:${controller.singularName}`     | controller.destroy    |
++--------+-------------------------------------------------------+-----------------------+
+```
+
+### Basic Controllers
+
+The can be attached to routes in routes.js.
+
+Take a look at the "examples" directory.
