@@ -10,10 +10,8 @@ If you set `controller.default` to true, then `controller.index` will be used fo
 
 These are automatically routed based on their names. Routes are created for available actions:
 
-```
-+--------+-------------------------------------------------------+-----------------------+
 | Verb   | Route                                                 | Method                |
-+--------+-------------------------------------------------------+-----------------------+
+|--------|-------------------------------------------------------|-----------------------|
 | get    | `/${controller.name}/`                                | controller.index      |
 | get    | `/${controller.name}/create`                          | controller.create     |
 | post   | `/${controller.name}`                                 | controller.store      |
@@ -21,8 +19,6 @@ These are automatically routed based on their names. Routes are created for avai
 | get    | `/${controller.name}/:${controller.singularName}/edit`| controller.edit       |
 | put    | `/${controller.name}/:${controller.singularName}`     | controller.update     |
 | delete | `/${controller.name}/:${controller.singularName}`     | controller.destroy    |
-+--------+-------------------------------------------------------+-----------------------+
-```
 
 ## Basic Controllers
 
