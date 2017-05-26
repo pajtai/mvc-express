@@ -14,7 +14,7 @@ MVC Express is a minimal MVC framework. It gives you:
 ## Usage
 
 1. Create your model loader, models, [controllers](/mvc-express/controllers), views and routes files using a defined folder structure.
-1. Start the app
+1. Start the app with the [boot method](/mvc-express/boot).
 
 To start the app:
 
