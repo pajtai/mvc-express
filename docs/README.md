@@ -26,13 +26,13 @@ const mvc = require('mvc-express');
 const config = require('../config/config.json');
 const modelLoader = require('mvc-express/models/sequelize')(config);
 
-
+```
 mvc.boot({
     root : __dirname,
     modelLoader
 });
 
-```
+
 
 Tell MVC Express where the root of your directory tree is. Your minimal directory tree should look like this:
 

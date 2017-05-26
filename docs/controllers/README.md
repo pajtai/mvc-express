@@ -1,4 +1,4 @@
-## Controllers
+# Controllers
 
 Controllers are loaded from `http/controllers`. There are two types of controllers, and they are loaded separately.
 
@@ -6,7 +6,7 @@ Resource controllers are loaded from `http/controllers/resource`. Basic controll
 
 If you set `controller.default` to true, then `controller.index` will be used for the `/` - the home page.
 
-### Resource Controllers
+## Resource Controllers
 
 These are automatically routed based on their names. Routes are created for available actions:
 
@@ -24,7 +24,7 @@ These are automatically routed based on their names. Routes are created for avai
 +--------+-------------------------------------------------------+-----------------------+
 ```
 
-### Basic Controllers
+## Basic Controllers
 
 The can be attached to routes in routes.js.
 
