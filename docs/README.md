@@ -2,8 +2,6 @@
 
 [![Build Status](https://travis-ci.org/pajtai/mvc-express.png?branch=master)](https://travis-ci.org/pajtai/mvc-express)
 
-
-
 MVC Express is a minimal MVC framework. It gives you:
 
 1. Auto loading of Models you create
@@ -14,6 +12,9 @@ MVC Express is a minimal MVC framework. It gives you:
 1. Unhindered ability to use express views, middlewares, and other functionality
 
 ## Usage
+
+1. Create your model loader, models, [controllers](/mvc-express/controllers), views and routes files using a defined folder structure.
+1. Start the app
 
 To start the app:
 
@@ -110,30 +111,3 @@ get a route based on their name, and the get CRUD automatically generated based 
 to be hooked up to routes manually. Each controllers is called with models and services as arguments.
 5. root/http/route.js is loaded in. This is called with controllers, app, services
 
-## Controllers
-
-If you set `controller.default` to true, then `controller.index` will be used for the `/` - the home page.
-
-### Resource Controllers
-
-These are automatically routed based on their names. Routes are created for available actions:
-
-```
-+--------+-------------------------------------------------------+-----------------------+
-| Verb   | Route                                                 | Method                |
-+--------+-------------------------------------------------------+-----------------------+
-| get    | `/${controller.name}/`                                | controller.index      |
-| get    | `/${controller.name}/create`                          | controller.create     |
-| post   | `/${controller.name}`                                 | controller.store      |
-| get    | `/${controller.name}/:${controller.singularName}`     | controller.show       |
-| get    | `/${controller.name}/:${controller.singularName}/edit`| controller.edit       |
-| put    | `/${controller.name}/:${controller.singularName}`     | controller.update     |
-| delete | `/${controller.name}/:${controller.singularName}`     | controller.destroy    |
-+--------+-------------------------------------------------------+-----------------------+
-```
-
-### Basic Controllers
-
-The can be attached to routes in routes.js.
-
-Take a look at the "examples" directory.
