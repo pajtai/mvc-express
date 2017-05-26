@@ -14,6 +14,11 @@ MVC Express is a minimal MVC framework. It gives you:
 1. Routes.js file to hook Basic Controllers to routes
 1. Unhindered ability to use express views, middlewares, and other functionality
 
-## Docs
+## Learn More
 
-[Controllers](https://pajtai.github.io/mvc-express/controllers/)
+* [The boot process](https://pajtai.github.io/mvc-express/boot)
+* [Directory structure](https://pajtai.github.io/mvc-express/folders)
+* [Registering routes](https://pajtai.github.io/mvc-express/routes)
+* [Models](https://pajtai.github.io/mvc-express/models)
+* [Views](https://pajtai.github.io/mvc-express/views)
+* [Controllers](https://pajtai.github.io/mvc-express/controllers)
