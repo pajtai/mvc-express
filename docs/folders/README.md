@@ -1,5 +1,6 @@
 # Folder Structure
 
+`options.root` is used to calculate the directory structure.
 
 Tell MVC Express where the root of your directory tree is. Your minimal directory tree should look like this:
 
@@ -15,7 +16,7 @@ public
 resources
     views
 services
-index.js
+index.js (this is in the root dir)
 ```
 
 In the above the directory `index.js` is located in would be the root. Below is a more full example that can be used in

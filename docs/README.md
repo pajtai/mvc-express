@@ -14,6 +14,8 @@ MVC Express is a minimal MVC framework. It gives you:
 ## Learn More
 
 * [The boot process](/mvc-express/boot)
+    * [Options](/mvc-express/options)
+    * [Services](/mvc-express/services)
 * [Directory structure](/mvc-express/folders)
 * [Registering routes](/mvc-express/routes)
 * [Models](/mvc-express/models)

@@ -17,6 +17,8 @@ MVC Express is a minimal MVC framework. It gives you:
 ## Learn More
 
 * [The boot process](https://pajtai.github.io/mvc-express/boot)
+    * [Options](https://pajtai.github.io/mvc-express/options)
+    * [Services](https://pajtai.github.io/mvc-express/services)
 * [Directory structure](https://pajtai.github.io/mvc-express/folders)
 * [Registering routes](https://pajtai.github.io/mvc-express/routes)
 * [Models](https://pajtai.github.io/mvc-express/models)

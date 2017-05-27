@@ -20,9 +20,9 @@ exports.getDirTree = getDirTree;
 function boot(options) {
 
     options.express = options.express || express;
-    options.app = options.express();
+    options.app = options.app || options.express();
     options.PORT = options.PORT || 3000;
-    options.roots = options.root || process.cwd();
+    options.root = options.root || process.cwd();
     options.viewEngine = options.viewEngine || 'pug';
     const dirTree = getDirTree(options);
 

@@ -8,7 +8,7 @@ Boot is the startup process. It is minimally started as follows:
 require('mvc-express').boot();
 ```
 
-Boot take an optional options object.
+Boot takes an optional [options object](/mvc-express/options).
 
 After calling boot these are the things that happen:
 
