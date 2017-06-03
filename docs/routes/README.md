@@ -1,4 +1,4 @@
 # Routes
 
 The routes file is required from `http/routes`. It is called with `controllers`, `app`, and `services`. You can use
-this file to attach Basic Controllers to routes.
+this file to attach Basic Controllers to routes, or you can modify `app` in other ways.

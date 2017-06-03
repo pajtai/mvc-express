@@ -32,19 +32,28 @@ function boot(options) {
     // Boot process
     let bootFile = glob.sync(`${dirTree.boot}/startup.js`);
     let promise;
+
+    // Logic that boots rest of app async or sync;
     if (bootFile.length) {
+        console.log('> loading async');
         bootFile = bootFile.pop();
-        promise = require(bootFile)();
-        promise.then(() => {
-            exports.state.booted = true;
-        });
+        promise = require(bootFile)()
+            .then(() => {
+                exports.state.booted = true;
+                return loadAfterBoot(options, dirTree);
+            });
     } else {
+        console.log('> loading sync');
         bootFile = null;
         promise = BB.resolve();
         exports.state.booted = true;
+        loadAfterBoot(options, dirTree);
     }
-    exports.promise = promise;
 
+    return promise;
+}
+
+function loadAfterBoot(options, dirTree) {
     // Load models
     const modelPaths = glob.sync(`${dirTree.models}/**/*.model.js`);
     const modelLoader = options.modelLoader || require(path.join(dirTree.boot, 'models'));
@@ -65,8 +74,6 @@ function boot(options) {
 
     exports.server = options.app.listen(options.PORT);
     console.log(`Express started on port ${options.PORT}`);
-
-    return promise;
 }
 
 function reset() {

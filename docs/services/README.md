@@ -1,6 +1,7 @@
 # Services
 
-Service are loaded from the directory `services` in the root directory. An object based on the file structure of the
+Service are loaded from the directory `services` in the root directory. To be loaded, the file must be named `*.service.js`.
+An object based on the file structure of the
 services dir is created. For example with this file structure:
 
 ```

@@ -6,6 +6,7 @@ const path = require('path');
 module.exports = (models, dirTree, services) => {
     let controllers = {};
 
+    console.log('> about to load controllers');
     glob.sync(`${dirTree.controllersResource}/**/*.controller.js`).forEach(controllerFilePath => {
         let controller = createController(controllerFilePath, models, services);
         // Flag this as a resource controller
@@ -17,6 +18,7 @@ module.exports = (models, dirTree, services) => {
         let controller = createController(controllerFilePath, models);
         controllers[controller.name] = controller;
     });
+    console.log('> done loading controllers');
     return controllers;
 };
 
