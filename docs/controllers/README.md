@@ -4,7 +4,8 @@ Controllers are loaded from `http/controllers`. There are two types of controlle
 
 Resource controllers are loaded from `http/controllers/resource`. Basic controllers are loaded from `http/controllers/basic`.
 
-You have to name your controller files `${name}.controller.js`.
+You have to name your controller files `*.controller.js`. Your controller file will be called with two arguments: `models` and
+`services`.
 
 If you set `controller.default` to true, then `controller.index` will be used for the `/` - the home page.
 

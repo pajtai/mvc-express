@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = (options, dirTree, controllers, services) => {
-    loadResourceControllers(options.app, controllers);
     loadBasicControllers(options.app, dirTree, controllers, services);
+    loadResourceControllers(options.app, controllers);
 };
 
 function loadResourceControllers(app, controllers) {

@@ -50,6 +50,7 @@ function boot(options) {
         loadAfterBoot(options, dirTree);
     }
 
+    exports.promise = promise;
     return promise;
 }
 
