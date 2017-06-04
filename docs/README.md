@@ -22,3 +22,4 @@ MVC Express is a minimal MVC framework. It gives you:
 * [Views](/mvc-express/views)
 * [Controllers](/mvc-express/controllers)
 
+Cli helper available at [mvc-express-cli](https://github.com/pajtai/mvc-express-cli).
