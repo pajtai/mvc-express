@@ -28,22 +28,18 @@ function boot(options) {
 
     // Loading services
     exports.services = namespace.sync(dirTree.services, '/**/*.service.js', '.service.js');
-
     // Boot process
     let bootFile = glob.sync(`${dirTree.boot}/startup.js`);
     let promise;
 
-    // Logic that boots rest of app async or sync;
     if (bootFile.length) {
-        console.log('> loading async');
         bootFile = bootFile.pop();
-        promise = require(bootFile)()
+        promise = BB.resolve(require(bootFile)(exports.services))
             .then(() => {
                 exports.state.booted = true;
                 return loadAfterBoot(options, dirTree);
             });
     } else {
-        console.log('> loading sync');
         bootFile = null;
         promise = BB.resolve();
         exports.state.booted = true;
@@ -59,9 +55,11 @@ function loadAfterBoot(options, dirTree) {
     const modelPaths = glob.sync(`${dirTree.models}/**/*.model.js`);
     const modelLoader = options.modelLoader || require(path.join(dirTree.boot, 'models'));
     exports.models = modelLoader(modelPaths, exports.services);
-
-    // Load controllers
     exports.controllers = loadControllers(exports.models, dirTree, exports.services);
+
+    options.verbose && exports.services && console.log('\n\nServices available:'), Object.keys(exports.services).forEach(service => console.log(`    ${service}`));
+    options.verbose && exports.models && console.log('\n\nModels available:'), Object.keys(exports.models).forEach(model => console.log(`    ${model}`));
+    options.verbose && exports.controllers && console.log('\n\nControllers available:'), Object.keys(exports.controllers).forEach(controller => console.log(`    ${controller}`));
 
     // Start node app
     options.app.set('view engine', options.viewEngine);
@@ -79,6 +77,8 @@ function loadAfterBoot(options, dirTree) {
 
 function reset() {
     exports.server && exports.server.close();
+    exports.controllers = null;
+    exports.models = null;
     exports.server = null;
     exports.promise = null;
     exports.services = null;
@@ -97,6 +97,7 @@ function getDirTree(options) {
         controllersResource : path.join(root, 'http', 'controllers', 'resource'),
         models : path.join(root, 'models'),
         routes : path.join(root, 'http', 'routes'),
+        routesInit : path.join(root, 'http', 'routes-init'),
         services : path.join(root, 'services'),
         views : path.join(root, 'resources', 'views')
     }

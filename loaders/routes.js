@@ -1,8 +1,9 @@
 'use strict';
 
 module.exports = (options, dirTree, controllers, services) => {
-    loadBasicControllers(options.app, dirTree, controllers, services);
+    loadRoutesInit(options.app, dirTree, controllers, services);
     loadResourceControllers(options.app, controllers);
+    loadBasicControllers(options.app, dirTree, controllers, services);
 };
 
 function loadResourceControllers(app, controllers) {
@@ -26,25 +27,32 @@ function loadResourceControllers(app, controllers) {
             app.post(`/${controller.name}`, controller.store.bind(controller));
         }
         if (controller.show) {
-            app.get(`/${controller.name}/:${controller.singularName}`, controller.show.bind(controller));
+            app.get(`/${controller.name}/:id`, controller.show.bind(controller));
         }
         if (controller.edit) {
-            app.get(`/${controller.name}/:${controller.singularName}/edit`, controller.edit.bind(controller));
+            app.get(`/${controller.name}/:id/edit`, controller.edit.bind(controller));
         }
         if (controller.update) {
-            app.put(`/${controller.name}/:${controller.singularName}`, controller.update.bind(controller));
+            app.put(`/${controller.name}/:id`, controller.update.bind(controller));
         }
         if (controller.destroy) {
-            app.delete(`/${controller.name}/:${controller.singularName}`, controller.destroy.bind(controller));
+            app.delete(`/${controller.name}/:id`, controller.destroy.bind(controller));
         }
+    }
+}
+
+function loadRoutesInit(app, dirTree, controllers, services) {
+    try {
+       require(dirTree.routesInit)(controllers, app, services);
+    } catch (e) {
+        console.log('Loading routes-init failed');
     }
 }
 
 function loadBasicControllers(app, dirTree, controllers, services) {
     try {
-        let routes = require(dirTree.routes)(controllers, app, services);
+        require(dirTree.routes)(controllers, app, services);
     } catch (e) {
         console.log('Loading routes failed');
-        console.log(e);
     }
 }

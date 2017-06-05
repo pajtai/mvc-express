@@ -18,16 +18,26 @@ These are automatically routed based on their names. Routes are created for avai
 | get    | `/${controller.name}/`                                | controller.index      |
 | get    | `/${controller.name}/create`                          | controller.create     |
 | post   | `/${controller.name}`                                 | controller.store      |
-| get    | `/${controller.name}/:${controller.singularName}`     | controller.show       |
-| get    | `/${controller.name}/:${controller.singularName}/edit`| controller.edit       |
-| put    | `/${controller.name}/:${controller.singularName}`     | controller.update     |
-| delete | `/${controller.name}/:${controller.singularName}`     | controller.destroy    |
+| get    | `/${controller.name}/:id`                             | controller.show       |
+| get    | `/${controller.name}/:id/edit`                        | controller.edit       |
+| put    | `/${controller.name}/:id`                             | controller.update     |
+| delete | `/${controller.name}/:id`                             | controller.destroy    |
+
+In the action for the controllers with `:id`, the id is available as `req.params.id`.
 
 ## Basic Controllers
 
-The can be attached to routes in routes.js.
+They can be attached to routes in routes.js. The actually middleware is on the action: `app.get('/something', controllers.myController.create)`
 
 Take a look at the "examples" directory.
+
+## Order
+
+Resource controllers are loaded first. `routes.js` is called second. This is so a standard express 404 pages can be included
+in routes.js using something like `app.get('*', controllers.notFound.index);`
+
+If you need to add something before the resource controllers (e.g. auth on them), do it in `routes-init.js` or before you
+pass app into boot.
 
 ## Examples
 

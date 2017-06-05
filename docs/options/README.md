@@ -8,5 +8,6 @@
 | root | process.cwd() |
 | viewEngine | 'pug' |
 | modelLoader | `require(path.join(options.root, 'boot', 'models'))` |
+| verbose | false |
 
 The [directory structure](/mvc-express/folders) is calculated from `options.root`.
