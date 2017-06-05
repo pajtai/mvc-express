@@ -34,11 +34,18 @@ function boot(options) {
 
     if (bootFile.length) {
         bootFile = bootFile.pop();
-        promise = BB.resolve(require(bootFile)(exports.services))
-            .then(() => {
+        promise = require(bootFile)(exports.services);
+
+        if (promise) {
+            promise = promise.then(() => {
                 exports.state.booted = true;
                 return loadAfterBoot(options, dirTree);
             });
+        } else {
+            exports.state.booted = true;
+            loadAfterBoot(options, dirTree);
+        }
+
     } else {
         bootFile = null;
         promise = BB.resolve();
@@ -57,9 +64,9 @@ function loadAfterBoot(options, dirTree) {
     exports.models = modelLoader(modelPaths, exports.services);
     exports.controllers = loadControllers(exports.models, dirTree, exports.services);
 
-    options.verbose && exports.services && console.log('\n\nServices available:'), Object.keys(exports.services).forEach(service => console.log(`    ${service}`));
-    options.verbose && exports.models && console.log('\n\nModels available:'), Object.keys(exports.models).forEach(model => console.log(`    ${model}`));
-    options.verbose && exports.controllers && console.log('\n\nControllers available:'), Object.keys(exports.controllers).forEach(controller => console.log(`    ${controller}`));
+    options.verbose && exports.services && (console.log('\n\nServices available:'), Object.keys(exports.services).forEach(service => console.log(`    ${service}`)));
+    options.verbose && exports.models && (console.log('\n\nModels available:'), Object.keys(exports.models).forEach(model => console.log(`    ${model}`)));
+    options.verbose && exports.controllers && (console.log('\n\nControllers available:'), Object.keys(exports.controllers).forEach(controller => console.log(`    ${controller}`)));
 
     // Start node app
     options.app.set('view engine', options.viewEngine);

@@ -26,11 +26,15 @@ describe('boot', () => {
             });
         });
 
-        it('should load models from app/models using boot/models', () => {
-            mvc.models.should.deep.equal({
-                pages : { name: 'pages', b : 1 },
-                users : { name: 'users', c : 1 }
-            })
+        it('should load models from app/models using boot/models', (done) => {
+            mvc.promise.then(() => {
+                mvc.models.should.deep.equal({
+                    pages : { name: 'pages', b : 1 },
+                    users : { name: 'users', c : 1 }
+                });
+                done();
+            });
+
         });
         describe('controllers', () => {
              it('should load basic controllers from app/http/controllers/basic', () => {
