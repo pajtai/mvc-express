@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = (options, dirTree, controllers, services) => {
-    loadRoutesInit(options.app, dirTree, controllers, services);
+    loadRoutesInit(options.app, dirTree, controllers, services, options);
     loadResourceControllers(options.app, controllers);
-    loadBasicControllers(options.app, dirTree, controllers, services);
+    loadBasicControllers(options.app, dirTree, controllers, services, options);
 };
 
 function loadResourceControllers(app, controllers) {
@@ -41,17 +41,17 @@ function loadResourceControllers(app, controllers) {
     }
 }
 
-function loadRoutesInit(app, dirTree, controllers, services) {
+function loadRoutesInit(app, dirTree, controllers, services, options) {
     try {
-       require(dirTree.routesInit)(controllers, app, services);
+       require(dirTree.routesInit)(controllers, app, services, options);
     } catch (e) {
         console.log('Loading routes-init failed');
     }
 }
 
-function loadBasicControllers(app, dirTree, controllers, services) {
+function loadBasicControllers(app, dirTree, controllers, services, options) {
     try {
-        require(dirTree.routes)(controllers, app, services);
+        require(dirTree.routes)(controllers, app, services, options);
     } catch (e) {
         console.log('Loading routes failed');
     }
