@@ -2,7 +2,7 @@
 
 const mvc = require('../../../index');
 const config = require('../config/config.json');
-const modelLoader = require('../../../models/sequelize')(config);
+const modelLoader = require('mvc-express-sequelize')(config);
 
 
 mvc.boot({

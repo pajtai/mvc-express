@@ -13,12 +13,13 @@ mvc.boot({
 });
 ```
 
-The model loader is a function that is called with an array of the paths to all models and services.
+The model loader is a function that is called with an array of the paths to all models, services, and options.
 
 Model paths are generated from files in `app/models` that are named `*.model.js`. The model loader can of course choose
 to use or ignore the array of paths. An example model loader is located [here](https://github.com/pajtai/mvc-express/blob/master/models/sequelize.js).
 
 Model loader function example:
+
 ```js
 function modelLoader(modelPaths, services, options) {
     const models = {};
@@ -31,3 +32,9 @@ function modelLoader(modelPaths, services, options) {
     return models;
 }
 ```
+
+## Available model loaders
+
+You can write your own model loader or use one of the loaders available as an npm:
+
+* [Sequelize model loader](https://www.npmjs.com/package/mvc-express-sequelize)

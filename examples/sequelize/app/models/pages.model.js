@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes, services, options) {
   var Pages = sequelize.define('Pages', {
       id: {
           allowNull: false,

@@ -7,7 +7,7 @@ https://pajtai.github.io/mvc-express/
 
 MVC Express is a minimal MVC framework. It gives you:
 
-1. Auto loading of Models you create
+1. Auto loading of Models you create - use any ORM / model you want
 1. Optional Sequelize model loader 
 1. Auto loading of Resource Controllers - Controllers with CRUD on Controller name based routes
 1. Auto loading of Basic Controllers - Controllers that can be attached to routes
