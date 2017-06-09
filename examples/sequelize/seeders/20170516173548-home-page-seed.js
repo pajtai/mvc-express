@@ -1,6 +1,18 @@
 'use strict';
 
-const models = require('../core/loaders/models')();
+const config = require('../config/config.json');
+const modelLoader = require('mvc-express-sequelize')(config);
+const mvc = require('../../../index');
+const path = require('path');
+
+mvc.boot({
+    root : path.join(__dirname, '..', 'app'),
+    modelLoader,
+    listen : false
+});
+
+// models is available after boot
+const models = mvc.models;
 
 module.exports = {
     up: function (queryInterface, Sequelize) {

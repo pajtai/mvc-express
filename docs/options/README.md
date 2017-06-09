@@ -1,14 +1,15 @@
 # Options
 
-| Option  | Default |
-|---|---|
-| express | `require('express)` from this npm |
-| app | options.express() |
-| PORT | 3000 |
-| root | process.cwd() |
-| viewEngine | 'pug' |
-| modelLoader | `require(path.join(options.root, 'boot', 'models'))` |
-| verbose | false |
+| Option  | Default | Description |
+|---|---|---|
+| express | `require('express)` from this npm | |
+| app | options.express() | |
+| PORT | 3000 | Port to listen on |
+| root | process.cwd() | Root directory for the folder structure |
+| viewEngine | 'pug' | |
+| modelLoader | `require(path.join(options.root, 'boot', 'models'))` | Function to be used to load all models |
+| verbose | false | |
+| listen | true | If `false` the express app will not be started, but models, controllers, and services will be loaded |
 
 The [directory structure](/mvc-express/folders) is calculated from `options.root`.
 

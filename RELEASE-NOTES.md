@@ -1,5 +1,11 @@
 # Release Notes
 
+## 1.1.0
+_2017-06-09_
+
+Setting `options.listen` to `false` will not start the express app. Models, controllers, and services will still be loaded.
+They are available at `require('mvc-express).models`, `.controllers`, and `.services`.
+
 ## 1.0.0
 _2017-06-09_
 
