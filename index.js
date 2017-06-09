@@ -19,7 +19,14 @@ exports.getDirTree = getDirTree;
 
 function boot(options) {
 
+
     options.listen = options.listen !== false;
+
+    // Override for the cli
+    if (process.env.MVC_EXPRESS_LISTEN === 'false') {
+        options.listen = false;
+    }
+
     options.express = options.express || express;
     options.app = options.app || options.express();
     options.PORT = options.PORT || 3000;

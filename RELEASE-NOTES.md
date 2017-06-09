@@ -1,5 +1,10 @@
 # Release Notes
 
+## 1.2.0
+_2017-06-09_
+
+Setting `process.env.MVC_EXPRESS_LISTEN` to `false` will set `options.listen` to `false`. This override is needed for the CLI.
+
 ## 1.1.0
 _2017-06-09_
 
