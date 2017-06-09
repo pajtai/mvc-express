@@ -34,7 +34,7 @@ function boot(options) {
 
     if (bootFile.length) {
         bootFile = bootFile.pop();
-        promise = require(bootFile)(exports.services);
+        promise = require(bootFile)(exports.services, options);
 
         if (promise) {
             promise = promise.then(() => {
@@ -61,8 +61,8 @@ function loadAfterBoot(options, dirTree) {
     // Load models
     const modelPaths = glob.sync(`${dirTree.models}/**/*.model.js`);
     const modelLoader = options.modelLoader || require(path.join(dirTree.boot, 'models'));
-    exports.models = modelLoader(modelPaths, exports.services);
-    exports.controllers = loadControllers(exports.models, dirTree, exports.services);
+    exports.models = modelLoader(modelPaths, exports.services, options);
+    exports.controllers = loadControllers(exports.models, dirTree, exports.services, options);
 
     options.verbose && exports.services && (console.log('\n\nServices available:'), Object.keys(exports.services).forEach(service => console.log(`    ${service}`)));
     options.verbose && exports.models && (console.log('\n\nModels available:'), Object.keys(exports.models).forEach(model => console.log(`    ${model}`)));
