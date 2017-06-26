@@ -41,3 +41,7 @@ seeders
 ```
 
 For the case above, the `app` directory would be considered the root.
+
+## Resources
+
+The resources directory is meant for things that are compiled. Most resources are compiled and served as static assets. So sass files, images that get opimized, and front end javascript that gets browserified or webpacked. In addition to these the templates can be though of as compiled.
