@@ -25,6 +25,23 @@ These are automatically routed based on their names. Routes are created for avai
 
 In the action for the controllers with `:id`, the id is available as `req.params.id`.
 
+### Extra Middleware for Resource Controllers
+
+If you want to add middleware to one of the automatically attached methods, then create a new method called: 
+`${controller.name}Middleware`. Have this method return and array of desired middlewares.
+
+For example:
+
+```javascript
+    index(req, res) {
+        res.json(req.user);
+    }
+    
+    indexMiddleware() {
+        return [(req, res, next) => { console.log('ensuring logged in'); next(); }, ensureLoggedIn()];
+    }
+```
+
 ## Basic Controllers
 
 They can be attached to routes in routes.js. The actually middleware is on the action: `app.get('/something', controllers.myController.create)`

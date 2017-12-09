@@ -16,29 +16,37 @@ function loadResourceControllers(app, controllers) {
         if (controller.index) {
             if (controller.default) {
                 console.log('registering home page - this should only be called once');
-                app.get('/', controller.index.bind(controller));
+                app.get('/', getResourceControllerMiddlewares(controller, 'index'));
             }
-            app.get(`/${controller.name}/`, controller.index.bind(controller));
+            app.get(`/${controller.name}/`, getResourceControllerMiddlewares(controller, 'index'));
         }
         if (controller.create) {
-            app.get(`/${controller.name}/create`, controller.create.bind(controller));
+            app.get(`/${controller.name}/create`, getResourceControllerMiddlewares(controller, 'create'));
         }
         if (controller.store) {
-            app.post(`/${controller.name}`, controller.store.bind(controller));
+            app.post(`/${controller.name}`, getResourceControllerMiddlewares(controller, 'store'));
         }
         if (controller.show) {
-            app.get(`/${controller.name}/:id`, controller.show.bind(controller));
+            app.get(`/${controller.name}/:id`, getResourceControllerMiddlewares(controller, 'show'));
         }
         if (controller.edit) {
-            app.get(`/${controller.name}/:id/edit`, controller.edit.bind(controller));
+            app.get(`/${controller.name}/:id/edit`, getResourceControllerMiddlewares(controller, 'edit'));
         }
         if (controller.update) {
-            app.put(`/${controller.name}/:id`, controller.update.bind(controller));
+            app.put(`/${controller.name}/:id`, getResourceControllerMiddlewares(controller, 'update'));
         }
         if (controller.destroy) {
-            app.delete(`/${controller.name}/:id`, controller.destroy.bind(controller));
+            app.delete(`/${controller.name}/:id`, getResourceControllerMiddlewares(controller, 'destroy'));
         }
     }
+}
+
+function getResourceControllerMiddlewares(controller, method) {
+    let middlewares = [];
+    if (controller[method + 'Middleware']) {
+        middlewares = [controller[method + 'Middleware']()];
+    }
+    return [...middlewares, controller[method].bind(controller)]
 }
 
 function loadRoutesInit(app, dirTree, controllers, services, options) {
